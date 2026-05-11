@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Not a Chillguy - SCP Database</title>
+    <style>
+        body {
+            background-color: #0d0d0d;
+            color: #cfcfcf;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background: #000;
+            border-bottom: 3px solid #ff4d4d;
+            padding: 30px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        h1 { color: #ff4d4d; margin: 0; letter-spacing: 4px; font-size: 28px; }
+        .container {
+            max-width: 950px;
+            margin: 20px auto;
+            background: #161616;
+            border: 1px solid #333;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+        }
+        .scp-row {
+            display: flex;
+            padding: 12px 25px;
+            border-bottom: 1px solid #222;
+            align-items: center;
+            transition: 0.2s;
+        }
+        .scp-row:hover {
+            background: #252525;
+            border-left: 4px solid #ff4d4d;
+            color: #fff;
+        }
+        .scp-no {
+            color: #ff4d4d;
+            font-weight: bold;
+            width: 110px;
+            flex-shrink: 0;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        .scp-name { font-size: 15px; }
+        footer {
+            text-align: center;
+            padding: 50px;
+            color: #ff4d4d;
+            background: #000;
+            border-top: 1px solid #333;
+        }
+        .copyright {
+            margin-top: 15px;
+            font-size: 14px;
+            color: #888;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>NOT A CHILLGUY</h1>
+    <p style="font-size: 13px; color: #777;">DATABASE ACCESS: GRANTED (000 - 1254)</p>
+</header>
+
+<div class="container" id="scp-list">
+    <!-- Dữ liệu render tự động -->
+</div>
+
+<footer>
+    <div style="font-weight: bold; font-size: 18px; text-transform: uppercase;">
+        Đang cập nhật thêm thông tin scp...
+    </div>
+    <div class="copyright">
+        ©Not a Chillguy
+    </div>
+</footer>
+
+<script>
+    const scpDatabase = {
+        // --- Dữ liệu tổng hợp ---
+        "000": "Lỗi Hệ Thống", "001": "Nguyên Mẫu", "002": "Căn Phòng Sống", "003": "Bo Mạch Sinh Học", "004": "12 Chìa Khóa", "005": "Chìa Khóa Vạn Năng",
+        "008": "Dịch Bệnh Zombie", "009": "Băng Đỏ", "012": "Bản Nhạc Kinh Hoàng", "017": "Người Bóng Đêm", "018": "Bóng Super Ball",
+        "035": "Mặt Nạ Chiếm Hữu", "049": "Bác Sĩ Dịch Hạch", "053": "Cô Bé Đáng Yêu", "055": "Vật Thể Không Ghi Nhớ", "073": "Cain",
+        "076": "Able", "079": "AI Cũ", "087": "Cầu Thang", "093": "Biển Đỏ", "096": "Sát Thủ Nhút Nhát", "106": "Lão Già", "173": "Tượng Điêu Khắc",
+        "294": "Máy Pha Cà Phê", "343": "Chúa", "682": "Thằn Lằn Bất Tử", "939": "Kẻ Săn Mồi Giọng Nói", "999": "Quái Vật Kitít",
+        "1000": "Chân To", "1048": "Gấu Bông Thiết Kế", "1004": "Nhà Máy Phim Kinh Dị", "1128": "Quái Vật Thủy Sinh",
+        "027": "Vua Chuột", "029": "Con Gái Bóng Tối", "042": "Ngựa Không Cánh", "054": "Nữ Thần Nước", "066": "Đồ Chơi Eric",
+        "105": "Iris", "166": "Nữ Thần Thiên Nhiên", "231": "Đứa Trẻ Đặc Biệt", "354": "Hồ Máu", "457": "Người Lửa",
+        "500": "Thuốc Vạn Năng", "610": "Thịt Thối Rữa", "914": "Cỗ Máy Nâng Cấp", "1230": "Cuốn Sách Trong Mơ"
+        // Bạn có thể tiếp tục thêm các con khác vào đây...
+    };
+
+    const listElement = document.getElementById('scp-list');
+    let htmlContent = '';
+
+    for (let i = 0; i <= 1254; i++) {
+        let code = i.toString().padStart(3, '0');
+        let name = scpDatabase[code] || `Thực thể SCP-${code} - [Dữ liệu đang được cập nhật thêm]`;
+        
+        htmlContent += `
+            <div class="scp-row">
+                <div class="scp-no">SCP-${code}</div>
+                <div class="scp-name">${name}</div>
+            </div>
+        `;
+    }
+
+    listElement.innerHTML = htmlContent;
+</script>
+
+</body>
+</html>
+ 
