@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Not a Chillguy - SCP Database</title>
+    <title>Not a Chillguy - SCP Foundation Archive</title>
     <style>
         body {
             background-color: #0d0d0d;
@@ -21,9 +21,9 @@
             top: 0;
             z-index: 100;
         }
-        h1 { color: #ff4d4d; margin: 0; letter-spacing: 4px; font-size: 28px; }
+        h1 { color: #ff4d4d; margin: 0; letter-spacing: 4px; font-size: 28px; text-transform: uppercase; }
         .container {
-            max-width: 950px;
+            max-width: 1000px;
             margin: 20px auto;
             background: #161616;
             border: 1px solid #333;
@@ -38,20 +38,21 @@
         }
         .scp-row:hover {
             background: #252525;
-            border-left: 4px solid #ff4d4d;
+            border-left: 5px solid #ff4d4d;
             color: #fff;
         }
         .scp-no {
             color: #ff4d4d;
             font-weight: bold;
-            width: 110px;
+            width: 120px;
             flex-shrink: 0;
             font-family: 'Courier New', Courier, monospace;
+            font-size: 16px;
         }
-        .scp-name { font-size: 15px; }
+        .scp-name { font-size: 15px; letter-spacing: 0.5px; }
         footer {
             text-align: center;
-            padding: 50px;
+            padding: 40px;
             color: #ff4d4d;
             background: #000;
             border-top: 1px solid #333;
@@ -59,8 +60,9 @@
         .copyright {
             margin-top: 15px;
             font-size: 14px;
-            color: #888;
-            letter-spacing: 1px;
+            color: #666;
+            letter-spacing: 2px;
+            text-transform: uppercase;
         }
     </style>
 </head>
@@ -68,17 +70,15 @@
 
 <header>
     <h1>NOT A CHILLGUY</h1>
-    <p style="font-size: 13px; color: #777;">DATABASE ACCESS: GRANTED (000 - 1254)</p>
+    <p style="font-size: 13px; color: #888; margin-top: 10px;">LEVEL 4 CLEARANCE REQUIRED - DATABASE 000-500</p>
 </header>
 
 <div class="container" id="scp-list">
-    <!-- Dữ liệu render tự động -->
+    <!-- Dữ liệu được nạp tự động từ Script -->
 </div>
 
 <footer>
-    <div style="font-weight: bold; font-size: 18px; text-transform: uppercase;">
-        Đang cập nhật thêm thông tin scp...
-    </div>
+    <div style="font-weight: bold; font-size: 16px;">PHÂN LOẠI: CỰC MẬT (TOP SECRET)</div>
     <div class="copyright">
         ©Not a Chillguy
     </div>
@@ -86,25 +86,116 @@
 
 <script>
     const scpDatabase = {
-        // --- Dữ liệu tổng hợp ---
-        "000": "Lỗi Hệ Thống", "001": "Nguyên Mẫu", "002": "Căn Phòng Sống", "003": "Bo Mạch Sinh Học", "004": "12 Chìa Khóa", "005": "Chìa Khóa Vạn Năng",
-        "008": "Dịch Bệnh Zombie", "009": "Băng Đỏ", "012": "Bản Nhạc Kinh Hoàng", "017": "Người Bóng Đêm", "018": "Bóng Super Ball",
-        "035": "Mặt Nạ Chiếm Hữu", "049": "Bác Sĩ Dịch Hạch", "053": "Cô Bé Đáng Yêu", "055": "Vật Thể Không Ghi Nhớ", "073": "Cain",
-        "076": "Able", "079": "AI Cũ", "087": "Cầu Thang", "093": "Biển Đỏ", "096": "Sát Thủ Nhút Nhát", "106": "Lão Già", "173": "Tượng Điêu Khắc",
-        "294": "Máy Pha Cà Phê", "343": "Chúa", "682": "Thằn Lằn Bất Tử", "939": "Kẻ Săn Mồi Giọng Nói", "999": "Quái Vật Kitít",
-        "1000": "Chân To", "1048": "Gấu Bông Thiết Kế", "1004": "Nhà Máy Phim Kinh Dị", "1128": "Quái Vật Thủy Sinh",
-        "027": "Vua Chuột", "029": "Con Gái Bóng Tối", "042": "Ngựa Không Cánh", "054": "Nữ Thần Nước", "066": "Đồ Chơi Eric",
-        "105": "Iris", "166": "Nữ Thần Thiên Nhiên", "231": "Đứa Trẻ Đặc Biệt", "354": "Hồ Máu", "457": "Người Lửa",
-        "500": "Thuốc Vạn Năng", "610": "Thịt Thối Rữa", "914": "Cỗ Máy Nâng Cấp", "1230": "Cuốn Sách Trong Mơ"
-        // Bạn có thể tiếp tục thêm các con khác vào đây...
+        // Dữ liệu từ danh sách của bạn
+        "000": "Error", "001": "Various Proposals", "002": "The Living Room", "003": "Biological Motherboard", "004": "The 12 Rusty Keys",
+        "005": "Skeleton Key", "006": "Fountain of Youth", "007": "Abdominal Planet", "008": "Zombie Plague", "009": "Red Ice",
+        "010": "Collars of Control", "011": "Sentient Civil War Memorial Statue", "012": "A Bad Composition", "013": "Blue Lady Cigarettes",
+        "014": "The Concrete Man", "015": "Pipe Nightmare", "016": "Sentient Micro-Organism", "017": "Shadow Person", "018": "Super Ball",
+        "019": "The Monster Pot", "020": "Unseen Mold", "021": "Skin Wyrm", "022": "Morgue", "023": "Black Shuck", "024": "Game Show of Death",
+        "025": "A Well-Worn Wardrobe", "026": "After School Retention", "027": "Vermin God", "028": "Knowledge", "029": "Daughter of Shadows",
+        "030": "Homunculus", "031": "What is Love?", "032": "Brothers’ Bride", "033": "Ellipsis", "034": "Obsidian Ritual Knife",
+        "035": "Possessive Mask", "036": "Reincarnation Pilgrimage of the Yazidi", "037": "Dali Lama", "038": "The Tree of Everything",
+        "039": "Monkey Brain", "040": "Evolution’s Child", "041": "Thought-Broadcasting Patient", "042": "Formerly Winged Horse",
+        "043": "The Beatle", "044": "World War II Mole Rat", "045": "Atmospheric Converter", "046": "Predator/Prey", "047": "The Invisible Woman",
+        "048": "The Cursed SCP Number", "049": "Plague Doctor", "050": "To The Cleverest", "051": "Japanese Obsidian", "052": "Time-Traveling Train",
+        "053": "Young Girl", "054": "Water Nymph", "055": "Anti-Meme", "056": "A Beautiful Person", "057": "Table Fire", "058": "Heart of Darkness",
+        "059": "Radioactive Mineral", "060": "Infernal Occult Skeleton", "061": "Teleporting Toothpaste", "062": "Quantum Computer",
+        "063": "World’s Best TothBrush", "064": "Flawed Von Neumann Structure", "065": "Destroyed Organic Catalyst", "066": "Eric’s Toy",
+        "067": "Artist’s Pen", "068": "The Wire Figure", "069": "Second Chance", "070": "Iron Wings", "071": "Degenerative Metamorphic Entity",
+        "072": "The Foot of the Bed", "073": "Cain", "074": "Quantum Woodlouse", "075": "Corrosive Snail", "076": "Able", "077": "Rot Skull",
+        "078": "Guilt", "079": "Old AI", "080": "Dark Form", "081": "Spontaneous Combustion Virus", "082": "Fernand the Cannibal",
+        "083": "An Abandoned Row Home", "084": "Static Tower", "085": "Cassy", "086": "The Office of Dr. [REDACTED]", "087": "The Stairwell",
+        "088": "Lizard King", "089": "Tophet", "090": "Apotheosis", "091": "Nostalgia", "092": "The Best of The 5th Dimension",
+        "093": "Red Sea Object", "094": "Miniature Event Horizon", "095": "The Atomic Adventures of Ronnie Raygun", "096": "The Shy Guy",
+        "097": "Old Fairgrounds", "098": "Surgeon Crabs", "099": "The Portrait", "100": "Jamaican Joe’s Junkyard Jubilee",
+        "101": "Hungry Bag", "102": "Property of Marshall, Carter & Dark", "103": "The Never-Hungry Man", "104": "Doughnuts", "105": "Iris",
+        "106": "Old Man", "107": "The Turtle Shell", "108": "Extradimensional Nasal Cavity", "109": "Infinite Canteen", "110": "Subterranean City",
+        "111": "Dragon Snails", "112": "Variable Coaster", "113": "Gender-Switcher", "114": "The Trojan Horse", "115": "Miniature Dump Truck",
+        "116": "The Sandstone Marian Column", "117": "Complete Multitool", "118": "Nuclear Protists", "119": "Timecrowave", "120": "Teleporter Closet",
+        "121": "Concrete Cradle", "122": "No More Monsters", "123": "Containment Coffin", "124": "Fertile Soil", "125": "Contagious Reflection",
+        "126": "Invisible Friend", "127": "Living Gun", "128": "Kinetic Energy Entity", "129": "Progressive Fungal Infection", "130": "Postcard",
+        "131": "The Eye Pods", "132": "Broken Desert", "133": "Instant Hole", "134": "Star-Eyed Child", "135": "Black Lace", "136": "Naked Doll",
+        "137": "The Real Toy", "138": "The Ever-Living Man", "139": "All Eyes On Lucian 👁️", "140": "An Incomplete Chronicle", "141": "Codex Damnatio",
+        "142": "One-Way Street", "143": "Bladewood Grove", "144": "Titanium Plastic", "145": "Man-Absorbing Phone", "146": "Strange Meat",
+        "147": "Anachronistic Television", "148": "Telekill Alloy", "149": "The Blood Flies", "150": "Ship of Theseus", "151": "The Painting",
+        "152": "Book of Endings", "153": "Drain Worms", "154": "Offensive Bracelets", "155": "Infinite Speed Computer", "156": "Jazz Lounge",
+        "157": "Mimetic Predator", "158": "Soul Extractor", "159": "The Perfect Martini", "160": "Infinite IQ Test", "161": "Metal Tree",
+        "162": "Ball of Sharp", "163": "An Old Castaway", "164": "Sunken City", "165": "The Creeping Hunger", "166": "Teenage Succubus",
+        "167": "Infinite Labyrinth", "168": "Sentient Calculator", "169": "Leviathan", "170": "A Tube of Superglue", "171": "Collective Brain",
+        "172": "The Choir", "173": "The Sculpture", "174": "Ventriloquist Dummy", "175": "Treasure Island", "176": "Observable Time Loop",
+        "177": "Checkmate", "178": "3D Specs", "179": "Sauelsuesor", "180": "Reanimator", "181": "Lucky", "182": "Dimensional Jumping Creature",
+        "183": "Weavers", "184": "The Architect", "185": "Arcadian Horse", "186": "To End All Wars", "187": "Double Vision", "188": "The Craftsman",
+        "189": "Hair-Imitating Parasite", "190": "A Tube of Omnipotence", "191": "Cyborg Child", "192": "Flawless Cup", "193": "The Tissue Snatchers",
+        "194": "Thank You for Your Cooperation", "195": "Milky Soap", "196": "Time Paradox", "197": "The Greenhouse", "198": "Cup of Joe",
+        "199": "Brain Blob", "200": "Empty World", "201": "The Empty Room", "202": "Telepathic Knife", "203": "Psychic Sister", "204": "The Protector",
+        "205": "Shadow Lamps", "206": "Eye Drops", "207": "Cola Bottles", "208": "Beast of Burden", "209": "The Sadist’s Tumbler",
+        "210": "Crystalline Organism", "211": "Retrovirus", "212": "Improperly Organic", "213": "Anti-Matter Parasite", "214": "Hemotophages",
+        "215": "Clockwork Virus", "216": "The Safe", "217": "Clockwork Virus", "218": "Parasite Sleep", "219": "Radio Tower",
+        "220": "Two-Lane Time", "221": "Compulsion Tweezers", "222": "Clone Coffin", "223": "A Photo Album", "224": "Grandfather Clock",
+        "225": "Unknown Package", "226": "The Harbor of Tears", "227": "Ancient Armor", "228": "Psychical Cannon", "229": "Wire Weed",
+        "230": "The Scarecrow", "231": "Special Personnel Requirements", "232": "Dark Matter Object", "233": "23-Sided Polyhedron",
+        "234": "Extradimensional Fish", "235": "Tooth Fairy", "236": "Mimic Crabs", "237": "Self-Made Man", "238": "Building Complex",
+        "239": "The Witch Child", "240": "Dark Hive", "241": "Self-Cooking Meal", "242": "Self-Cleaning Pool", "243": "Telepathic Spider",
+        "244": "Ice Fog Jars", "245": "SCP-RPG", "246": "The Administrator", "247": "A Harmless Kitten", "248": "110%", "249": "The Random Door",
+        "250": "Most of an Allosaurus", "251": "The Deceptive Snow Globe", "252": "Humboldt Squid", "253": "The Cancer Plague",
+        "254": "Spreadable Pigments", "255": "Subject Formerly Known as Professor", "256": "Trapped Biological Entity",
+        "257": "Professor Woodsworth’s Collection", "258": "Cragglewood Park", "259": "Wyrmwood", "260": "The Tracking Stone",
+        "261": "Pan-Dimensional Vending Machine", "262": "A Coat of Many Arms", "263": "Cash Box", "264": "Skeleton Temple", "265": "Black Volga",
+        "266": "Will-O’-Wisp", "267": "Tumor Vines", "268": "Cap of Neglect", "269": "Organ Eater", "270": "Secluded Telephone",
+        "271": "Inscribed Disc", "272": "Anti-Gravity Sphere", "273": "Inscription in Cave", "274": "Graffito", "275": "Eye Glasses",
+        "276": "The Clockwork City", "277": "Food Critic", "278": "Adult Swim", "279": "Mecha Bird", "280": "Eyes in the Dark",
+        "281": "The Snooze Alarm", "282": "Are We Cool Yet?", "283": "Monster Road Sign", "284": "The Lovecraftian Locket", "285": "Coral Parasite",
+        "286": "The Brothers’ Game", "287": "Town Fucked By Bears", "288": "Stepford Marriage Rings", "289": "The Bone Orchard", "290": "The Network",
+        "291": "Disassembler/Reassembler", "292": "Titania’s Prison", "293": "Obsidian Vase", "294": "Coffee Machine", "295": "Infectious House",
+        "296": "Armed Containment Site", "297": "Steely Dan", "298": "Blood Organism", "299": "Infectious Tree", "300": "A World in a Bottle",
+        "301": "Telepathic Circus", "302": "Blind Shark Thing", "303": "The Doorman", "304": "The Signal", "305": "The Whisperer",
+        "306": "Echoing Halls", "307": "Carnivorous Ivy", "308": "The Illusionary Painter", "309": "Persistent Rain", "310": "Eternal Classroom",
+        "311": "Transparent Humanoid", "312": "Atmospheric Brain", "313": "Powerful Baby", "314": "The Message", "315": "The Recorded Man",
+        "316": "Tiny Harbinger", "317": "Cretaceous Physicist", "318": "The Crystalline Child", "319": "Invisible Destroyer", "320": "Higgs Field Disturbance 🗿",
+        
+        // --- CỘNG THÊM TỪ 321 ĐẾN 500 ---
+        "321": "Man's Daughter", "322": "Grow-Your-Own-Castle Kit", "323": "Wendigo Skull", "324": "Eulogy Shrub", "325": "The Detergent",
+        "326": "The Extra Skeleton", "327": "The Mermaid", "328": "Alien Disc", "329": "The Garden", "330": "Take Only Two",
+        "331": "Tumbleweed", "332": "The 1976 Kirk Lonwood High School Marching Band", "333": "City in a Symphony", "334": "Stellar Fox", "335": "One Hundred and Fifty Floppy Disks",
+        "336": "Lilith", "337": "Hairball", "338": "Portable Radio", "339": "Be Silent, Be Still", "340": "Viral Respirator",
+        "341": "A Collection of Extrasolar Orreries", "342": "A Ticket to Ride", "344": "Schrödinger's Can Opener", "345": "Stone Puzzle Cube",
+        "346": "Pterodactyl", "347": "The Invisible Woman", "348": "A Gift from Dad", "349": "The Cemetery of Unattainable Success", "350": "Unbreakable Contract",
+        "351": "Canon Memory", "352": "Baba Yaga", "353": "Vector", "355": "Serrated Lawn", "356": "Auto-Interrogator",
+        "357": "Hungry Clay", "358": "Desert Hospital", "359": "The Hawk", "360": "Ascendance", "361": "Bronze Tarot Card",
+        "362": "A Cool T-Shirt", "363": "Not-Quite-Centipedes", "364": "Icy Point", "365": "Pool Noodle", "366": "Grubs",
+        "367": "Little Fuzzies", "368": "Paper Crane", "369": "Living Migrating Border", "370": "A Key", "371": "Macrobium",
+        "373": "Ghost Record", "374": "The Oracular Guillotine", "375": "Forever a Bank", "376": "The Traffic Light Tree", "377": "Accurate Fortune Cookies",
+        "378": "Brainworm", "379": "Mechanical Pheromone", "380": "Biological Networking Device", "381": "The Pyrotechnic Polyphony", "382": "Haunted Mirror",
+        "383": "Variably Useful Flu", "384": "Let Her Out", "385": "Personal Anti-Gravity Field Generator", "386": "Eternal Fungus", "387": "Living Lego",
+        "388": "Instant Fridge", "389": "Message in a Bottle", "390": "Ancient Death Ray", "391": "The Midas Owl", "392": "A Plant Now",
+        "393": "The Memory Planner", "394": "Ear Candles", "395": "The Bottle Baby", "396": "Suddenly, Chair", "397": "A Hominid",
+        "398": "The Hall of All Your Desires", "399": "Radical Electromagnetic Experiment", "400": "Beautiful Babies", "401": "A Palm Tree", "402": "The Obsidian Absorber",
+        "403": "Escalating Lighter", "404": "Memories Lost", "405": "Telepathic Virus", "406": "The Sleepwalker's Tunnel", "408": "Illusory Butterflies",
+        "410": "Editor Beetles", "411": "Ancient Outside", "412": "Mutagenic Mirror", "413": "Countdown Clock", "414": "Regardless, I Am Deserving of Happiness",
+        "415": "The Harvest", "416": "Infinite Forest", "417": "The Plague Tree", "418": "The Human Jig-Saw", "419": "The World Outside",
+        "420": "Aggressive Whiskey", "421": "Shoal of Driftwood", "422": "The Patchwork Cow", "423": "Self-Inserting Character", "424": "People Mimes",
+        "425": "The 250-Year-Old Broadcast", "427": "Lovecraftian Locket", "428": "The Crowd", "429": "Clockwork Car", "430": "A Quiet State",
+        "431": "Dr. Heisler", "432": "Cabinet Maze", "433": "A Ritual", "434": "A Meeting Meeting", "435": "He-Who-Made-Darkness",
+        "436": "The Locket", "437": "Summer of '91", "438": "Addictive Pyramids", "439": "Bone Hive", "440": "The Ecology of Eco",
+        "441": "Jacob's Ladder", "442": "A Perfect Pocket Watch", "443": "Thought-broadcasting Statue", "444": "The Word Husher", "445": "Dr. Wondertainment's Super Paper",
+        "446": "The Human Mannequin", "447": "Ball of Green Slime", "448": "Jack-in-the-Box", "449": "Gut-Worm", "451": "Mister Misery",
+        "452": "Iceberg Spider", "453": "Scripted Nightclub", "454": "Comic Book", "455": "Cargo Ship", "456": "Soporific Dust",
+        "458": "The Never-Ending Pizza Box", "459": "Interstellar Thermostat", "460": "Séance Residence", "461": "Ziggurat", "462": "The Getaway Car",
+        "463": "A Spoon", "464": "The Red Zone", "465": "A Box of Party Favors", "466": "Mobile Veins", "467": "Seaside Phone Booth",
+        "468": "The Abacus", "471": "A Satellite", "472": "The Bloodstone", "473": "Screams on the Water", "474": "Broken Town",
+        "475": "Pope-in-a-Bottle", "476": "Map of the Canadian Pacific Railway", "477": "Recovered Art", "478": "Tooth Fairies", "479": "Clockwork Soldier",
+        "481": "Mythical Librarian", "482": "Mental Health Clinic", "483": "Antimatter Pills", "484": "Memory Stealing Drug", "485": "Death's Dice",
+        "486": "The Bone Canon", "487": "The Impossible Tree", "488": "The Perfect Circle", "489": "1-800-GHOSTS", "490": "Ice Cream Truck",
+        "491": "Progenitor", "492": "Animated Cloth Scarecrow", "493": "Reincarnating Man", "494": "Transmutation Matter", "495": "The Marble Statue",
+        "496": "Sunken Deity", "497": "The Human Blueprint", "498": "11-Minute Alarm Clock", "500": "Panacea"
     };
 
     const listElement = document.getElementById('scp-list');
     let htmlContent = '';
 
-    for (let i = 0; i <= 1254; i++) {
+    for (let i = 0; i <= 500; i++) {
         let code = i.toString().padStart(3, '0');
-        let name = scpDatabase[code] || `Thực thể SCP-${code} - [Dữ liệu đang được cập nhật thêm]`;
+        let name = scpDatabase[code] || `SCP-${code} - [DỮ LIỆU ĐANG ĐƯỢC GIẢI MÃ]`;
         
         htmlContent += `
             <div class="scp-row">
