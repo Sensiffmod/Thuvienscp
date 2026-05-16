@@ -25,6 +25,33 @@
             overflow-x: hidden;
         }
 
+        /* --- HIỆU ỨNG LOGO SCP XOAY TRÒN DƯỚI NỀN --- */
+        .scp-bg-logo {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 45vw; /* Kích thước logo theo chiều rộng màn hình */
+            height: 45vw;
+            max-width: 600px;
+            max-height: 600px;
+            transform: translate(-50%, -50%);
+            /* Độ mờ 0.02 để tạo cảm giác chìm huyền bí, không đè chữ */
+            opacity: 0.025; 
+            pointer-events: none;
+            z-index: -2;
+            animation: spinLogo 60s linear infinite; /* 60 giây quay hết 1 vòng */
+        }
+
+        @keyframes spinLogo {
+            from {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+            to {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+        /* ------------------------------------------- */
+
         /* Lớp nền chữ chìm bảo mật */
         body::before {
             content: "CONFIDENTIAL";
@@ -33,7 +60,7 @@
             left: 50%;
             transform: translate(-50%, -50%) rotate(-30deg);
             font-size: 10vw;
-            color: rgba(255, 255, 255, 0.03);
+            color: rgba(255, 255, 255, 0.02);
             z-index: -1;
             white-space: nowrap;
             pointer-events: none;
@@ -64,6 +91,7 @@
             background: var(--panel-bg);
             border: 1px solid #333;
             box-shadow: 0 0 30px rgba(0,0,0,1);
+            backdrop-filter: blur(5px); /* Tạo hiệu ứng kính mờ nhìn xuyên qua logo */
         }
 
         /* Bọc toàn bộ hàng bao gồm cả phần chi tiết ẩn */
@@ -168,6 +196,30 @@
     </style>
 </head>
 <body>
+
+<!-- SVG Huy hiệu tổ chức SCP Foundation dựng bằng code thuần -->
+<svg class="scp-bg-logo" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="256" cy="256" r="235" fill="none" stroke="#ffffff" stroke-width="24"/>
+    <circle cx="256" cy="256" r="160" fill="none" stroke="#ffffff" stroke-width="14"/>
+    <circle cx="256" cy="256" r="55" fill="none" stroke="#ffffff" stroke-width="14"/>
+    <g transform="translate(256,256)">
+        <!-- Mũi tên 1 -->
+        <g transform="rotate(0)">
+            <path d="M -25,-155 L 25,-155 L 25,-105 L 45,-105 L 0,-60 L -45,-105 L -25,-105 Z" fill="#ffffff" />
+            <path d="M -10,-240 L 10,-240 L 10,-175 L -10,-175 Z" fill="#ffffff" />
+        </g>
+        <!-- Mũi tên 2 -->
+        <g transform="rotate(120)">
+            <path d="M -25,-155 L 25,-155 L 25,-105 L 45,-105 L 0,-60 L -45,-105 L -25,-105 Z" fill="#ffffff" />
+            <path d="M -10,-240 L 10,-240 L 10,-175 L -10,-175 Z" fill="#ffffff" />
+        </g>
+        <!-- Mũi tên 3 -->
+        <g transform="rotate(240)">
+            <path d="M -25,-155 L 25,-155 L 25,-105 L 45,-105 L 0,-60 L -45,-105 L -25,-105 Z" fill="#ffffff" />
+            <path d="M -10,-240 L 10,-240 L 10,-175 L -10,-175 Z" fill="#ffffff" />
+        </g>
+    </g>
+</svg>
 
 <header>
     <h1>DATABASE: SCP-000 TO SCP-700</h1>
